@@ -48,7 +48,6 @@ public class EditProfile extends AppCompatActivity {
     private TextInputLayout textInputName, textInputUsername, textInputEmail;
     private String nameInput, emailInput, usernameInput;
     private String adminName, adminEmail, adminUsername, adminImage;
-    private MaterialButton updateAdminButton;
     ProgressBar progressBar;
 
     private StorageReference storageReference;
@@ -76,7 +75,7 @@ public class EditProfile extends AppCompatActivity {
         updateAdminImage = findViewById(R.id.update_admin_image);
         updateAdminImage.setOnClickListener(v -> askForProfileRemoval());
 
-        updateAdminButton = findViewById(R.id.update_admin);
+        MaterialButton updateAdminButton = findViewById(R.id.update_admin);
         updateAdminButton.setOnClickListener(v -> validateInfo());
 
         Objects.requireNonNull(textInputName.getEditText()).setText(adminName);
@@ -101,7 +100,8 @@ public class EditProfile extends AppCompatActivity {
     }
 
     private void askForProfileRemoval() {
-
+        //We have to add an AlertBox here which will ask do you want to remove or change profile.
+        //If remove, it will be deleted from database. If change, the gallery will open
         openGallery();
     }
 

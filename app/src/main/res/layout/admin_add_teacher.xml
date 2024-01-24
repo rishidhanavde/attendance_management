@@ -7,17 +7,13 @@
     android:orientation="vertical"
     tools:context=".admin_files.faculty.AddTeacher">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
-
     <TextView
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="25dp"
         android:gravity="center"
@@ -27,7 +23,7 @@
         android:textStyle="bold" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/addTeacherImage"
+        android:id="@+id/add_teacher_image"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_below="@id/header"
@@ -36,7 +32,7 @@
         android:src="@drawable/default_profile_pic" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_name"
+        android:id="@+id/add_teacher_text_input_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/addTeacherImage"
@@ -61,10 +57,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_email"
+        android:id="@+id/add_teacher_text_input_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_input_name"
+        android:layout_below="@id/add_teacher_text_input_name"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:focusable="true"
@@ -85,10 +81,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_username"
+        android:id="@+id/add_teacher_text_input_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_input_email"
+        android:layout_below="@id/add_teacher_text_input_email"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:focusable="true"
@@ -111,10 +107,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/registerbtn"
+        android:id="@+id/register_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_input_username"
+        android:layout_below="@id/add_teacher_text_input_username"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginStart="20dp"
@@ -126,7 +122,7 @@
         android:text="REGISTER" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="?android:progressBarStyleLarge"

@@ -6,12 +6,11 @@ import android.os.Bundle;
 
 import com.rishiprojects.attendancemanagement.R;
 
-public class AddTeacher extends AppCompatActivity {
-
+public class UpdateTeacher extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_add_teacher);
+        setContentView(R.layout.admin_update_teacher);
     }
 }

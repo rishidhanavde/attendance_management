@@ -21,14 +21,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
+
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/toolbar">
+            android:layout_marginTop="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -52,7 +50,7 @@
                     android:background="#c1c1c1" />
 
                 <LinearLayout
-                    android:id="@+id/adminInfo1"
+                    android:id="@+id/admin_info_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -63,12 +61,12 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/pleaseWait"
+                    android:id="@+id/please_wait"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <include layout="@layout/please_wait" />
+                    <include layout="@layout/please_wait_layout" />
 
                 </LinearLayout>
 
@@ -96,19 +94,19 @@
                     android:background="#c1c1c1" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/teachersList"
+                    android:id="@+id/teachers_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
                     android:visibility="gone" />
 
                 <LinearLayout
-                    android:id="@+id/noData"
+                    android:id="@+id/no_data_found"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <include layout="@layout/no_data_found" />
+                    <include layout="@layout/no_data_found_layout" />
 
                 </LinearLayout>
 
@@ -119,6 +117,14 @@
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:progressBarStyleLarge"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 

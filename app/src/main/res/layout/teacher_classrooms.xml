@@ -11,9 +11,7 @@
         android:layout_height="wrap_content">
 
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
+
 
         <TextView
             android:id="@+id/header"
@@ -52,7 +50,7 @@
             android:orientation="vertical"
             android:layout_below="@id/header">
 
-            <include layout="@layout/no_data_found" />
+            <include layout="@layout/no_data_found_layout" />
 
         </LinearLayout>
 

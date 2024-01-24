@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".teacher_files.profile.Profile">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
-
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/teacher_profile_pic"
         android:layout_width="200dp"

@@ -17,7 +17,7 @@ public class LoginAs extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_loginas);
+        setContentView(R.layout.login_as);
 
         LoginAsAdmin = findViewById(R.id.admin_login);
         LoginAsAdmin.setOnClickListener(new View.OnClickListener() {
