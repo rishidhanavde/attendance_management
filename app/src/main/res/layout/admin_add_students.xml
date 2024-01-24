@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin_files.students.AddStudents">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="25dp"
+            android:gravity="center"
+            android:text="Add Students"
+            android:textColor="#000000"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtEnterStandard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header"
+            android:text="Enter Standard: "
+            android:textSize="23dp"
+            android:textColor="@color/colorAccent"
+            android:layout_marginLeft="30dp"/>
+
+        <EditText
+            android:id="@+id/standardTxt"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@id/txtEnterStandard"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edittext"
+            android:hint="Standard"
+            android:paddingLeft="14sp"
+            android:singleLine="true"/>
+
+        <TextView
+            android:id="@+id/txtEnterDivision"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/standardTxt"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:text="Enter Division: "
+            android:textColor="@color/colorAccent"
+            android:textSize="23dp" />
+
+        <EditText
+            android:id="@+id/classTxt"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@id/txtEnterDivision"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edittext"
+            android:hint="Division"
+            android:paddingLeft="14sp"
+            android:singleLine="true"/>
+
+        <TextView
+            android:id="@+id/txtAddSubjects"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/classTxt"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:text="Add Subjects:"
+            android:textColor="@color/colorAccent"
+            android:textSize="23dp" />
+
+        <LinearLayout
+            android:id="@+id/subjectsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/txtAddSubjects">
+
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/addSubject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/subjectsList"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_button"
+            android:drawableRight="@drawable/ic_add"
+            android:text="Add" />
+
+        <Button
+            android:id="@+id/submitSubjects"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/subjectsList"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@id/addSubject"
+            android:background="@drawable/rounded_button"
+            android:text="Submit" />
+
+        <Button
+            android:id="@+id/add_students_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/subjectsList"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@id/submitSubjects"
+            android:background="@drawable/rounded_button"
+            android:text="Add Students" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcv"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:layout_margin="16dp"
+            android:layout_below="@id/submitSubjects">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/viewStudents"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp">
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:padding="1dp"
+                        android:background="@drawable/table_bold">
+
+                        <TableRow>
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:text="GI No."
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:padding="10dp"
+                                android:gravity="center"
+                                android:layout_column="1"
+                                android:background="@drawable/table_bold"/>
+
+                            <TextView
+                                android:layout_width="80dp"
+                                android:text="Roll No."
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:padding="10dp"
+                                android:gravity="center"
+                                android:layout_column="1"
+                                android:background="@drawable/table_bold"/>
+
+                            <TextView
+                                android:layout_width="300dp"
+                                android:text="Name"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:padding="10dp"
+                                android:layout_column="1"
+                                android:background="@drawable/table_bold"/>
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:text="Gender"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:padding="10dp"
+                                android:gravity="center"
+                                android:layout_column="1"
+                                android:background="@drawable/table_bold"/>
+
+                        </TableRow>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/studentInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/table"/>
+
+                    </TableLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+            </HorizontalScrollView>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_below="@id/mcv"/>
+
+
+    </RelativeLayout>
+
+</ScrollView>

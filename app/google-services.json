@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "517168307365",
+    "project_id": "attendance-management-ebfcb",
+    "storage_bucket": "attendance-management-ebfcb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517168307365:android:6f19a1592d8cad6838014c",
+        "android_client_info": {
+          "package_name": "com.rishiprojects.attendancemanagement"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjH6n5hhOTDw_iWIQsOJFZ7etfKYHpny8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

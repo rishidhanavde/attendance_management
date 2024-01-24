@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginAs">
+
+    <Button
+        android:id="@+id/admin_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login as Admin"
+        android:layout_toStartOf="@id/blank"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:id="@+id/blank"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <Button
+        android:id="@+id/teacher_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login as Teacher"
+        android:layout_toEndOf="@id/blank"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>
