@@ -259,9 +259,9 @@ public class EditProfile extends AppCompatActivity {
                         }
                     });
                 }
-//                else {
-//                    Toast.makeText(EditProfile.this, "Something went wrong!!", Toast.LENGTH_SHORT).show();
-//                }
+               else {
+                   Toast.makeText(EditProfile.this, "Something went wrong!!", Toast.LENGTH_SHORT).show();
+               }
             }
         });
     }
