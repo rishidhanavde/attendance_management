@@ -58,6 +58,7 @@ public class EditProfile extends AppCompatActivity {
     private Bitmap bitmap = null;
     String downloadUrl = "";
     private final int REQ = 1;
+    private final int REQ_CAMERA = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +74,7 @@ public class EditProfile extends AppCompatActivity {
         textInputUsername = findViewById(R.id.text_input_username);
         textInputEmail = findViewById(R.id.text_input_email);
         updateAdminImage = findViewById(R.id.update_admin_image);
-        updateAdminImage.setOnClickListener(v -> askForProfileRemoval());
+        updateAdminImage.setOnClickListener(v -> updateProfile());
 
         MaterialButton updateAdminButton = findViewById(R.id.update_admin);
         updateAdminButton.setOnClickListener(v -> validateInfo());
@@ -102,7 +103,36 @@ public class EditProfile extends AppCompatActivity {
     private void askForProfileRemoval() {
         //We have to add an AlertBox here which will ask do you want to remove or change profile.
         //If remove, it will be deleted from database. If change, the gallery will open
+
         openGallery();
+    }
+
+    private void updateProfile() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditProfile.this);
+        builder.setTitle("Edit Profile Picture");
+        builder.setItems(new CharSequence[]{"Take a Photo", "Choose from Gallery"}, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                switch (i) {
+                    case 0:
+                        //Take Photo
+                        openCamera();
+                        break;
+                    case 1:
+                        //Choose From Gallery
+                        openGallery();
+                        break;
+                }
+            }
+        });
+        builder.show();
+    }
+
+    private void openCamera() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQ_CAMERA);
+        }
     }
 
     private void openGallery() {
@@ -114,6 +144,7 @@ public class EditProfile extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQ && resultCode == RESULT_OK) {
+            //Choose from Gallery
             Uri uri = data.getData();
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
@@ -121,6 +152,13 @@ public class EditProfile extends AppCompatActivity {
                 e.printStackTrace();
             }
             updateAdminImage.setImageBitmap(bitmap);
+        } else if (requestCode == REQ_CAMERA && resultCode == RESULT_OK) {
+            //Take Photo
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            updateAdminImage.setImageBitmap(imageBitmap);
+            //now, the imageBitmap can be uploaded in 'bitmap'
+            bitmap = imageBitmap;
         }
     }
 
