@@ -74,7 +74,16 @@ public class EditProfile extends AppCompatActivity {
         textInputUsername = findViewById(R.id.text_input_username);
         textInputEmail = findViewById(R.id.text_input_email);
         updateAdminImage = findViewById(R.id.update_admin_image);
-        updateAdminImage.setOnClickListener(v -> updateProfile());
+        updateAdminImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (adminImage == null) {
+                    updateProfile();
+                } else {
+                    askForProfileRemoval();
+                }
+            }
+        });
 
         MaterialButton updateAdminButton = findViewById(R.id.update_admin);
         updateAdminButton.setOnClickListener(v -> validateInfo());
@@ -103,13 +112,30 @@ public class EditProfile extends AppCompatActivity {
     private void askForProfileRemoval() {
         //We have to add an AlertBox here which will ask do you want to remove or change profile.
         //If remove, it will be deleted from database. If change, the gallery will open
-
-        openGallery();
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditProfile.this);
+        builder.setTitle("Profile");
+        builder.setMessage("Do you want to update profile or remove it?");
+        builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                updateProfile();
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setNegativeButton("Remove", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                adminImage = null;
+                updateAdminImage.setImageDrawable(getResources().getDrawable(R.drawable.blank_profile_pic));
+                bitmap = null;
+            }
+        });
+        builder.show();
     }
 
     private void updateProfile() {
         AlertDialog.Builder builder = new AlertDialog.Builder(EditProfile.this);
-        builder.setTitle("Edit Profile Picture");
+        builder.setTitle("Update Profile Picture");
         builder.setItems(new CharSequence[]{"Take a Photo", "Choose from Gallery"}, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -304,12 +330,12 @@ public class EditProfile extends AppCompatActivity {
         });
     }
 
-    private void updateData(String s) {
+    private void updateData(String imageInput) {
         HashMap hm = new HashMap();
         hm.put("Name", nameInput);
         hm.put("Email", emailInput);
         hm.put("Username", usernameInput);
-        hm.put("Image", s);
+        hm.put("Image", imageInput);
 
         reference.child(userID).updateChildren(hm).addOnSuccessListener(new OnSuccessListener() {
             @Override
