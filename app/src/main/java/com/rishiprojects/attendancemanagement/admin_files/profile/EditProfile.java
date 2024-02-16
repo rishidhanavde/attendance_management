@@ -46,7 +46,7 @@ public class EditProfile extends AppCompatActivity {
     private ImageView updateAdminImage;
     private TextInputLayout textInputName, textInputUsername, textInputEmail;
     private String nameInput, emailInput, usernameInput;
-    private String adminName, adminEmail, adminUsername, adminImage;
+    private String adminName, adminEmail, adminUsername, adminImage, oldImgUrl;
     ProgressBar progressBar;
 
     private StorageReference storageReference;
@@ -67,6 +67,7 @@ public class EditProfile extends AppCompatActivity {
         adminEmail = getIntent().getStringExtra("adminEmail");
         adminUsername = getIntent().getStringExtra("adminUsername");
         adminImage = getIntent().getStringExtra("adminImage");
+        oldImgUrl = getIntent().getStringExtra("adminImage");
 
         progressBar = findViewById(R.id.progressBar);
         textInputName = findViewById(R.id.text_input_name);
@@ -126,7 +127,6 @@ public class EditProfile extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 adminImage = "";    //can't keep it 'null' bcoz the adminImage key from database gets deleted
                 updateAdminImage.setImageDrawable(getResources().getDrawable(R.drawable.blank_profile_pic));
-
             }
         });
         builder.show();
@@ -281,7 +281,7 @@ public class EditProfile extends AppCompatActivity {
     private void dialogBox(Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("No Picture Selected");
-        builder.setMessage("Are you sure you don't want to change the profile pic?");
+        builder.setMessage("Are you sure you don't want to keep the profile pic?");
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -330,6 +330,9 @@ public class EditProfile extends AppCompatActivity {
     }
 
     private void updateData(String imageInput) {
+        if (!oldImgUrl.equals("")) {
+            removeOldImageFromDatabaseStorage();
+        }
         HashMap hm = new HashMap();
         hm.put("Name", nameInput);
         hm.put("Email", emailInput);
@@ -351,6 +354,21 @@ public class EditProfile extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(EditProfile.this, "Something went wrong!!", Toast.LENGTH_SHORT).show();
                 finish();
+            }
+        });
+    }
+
+    private void removeOldImageFromDatabaseStorage() {
+        StorageReference imageRef = FirebaseStorage.getInstance().getReferenceFromUrl(oldImgUrl);
+        imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(EditProfile.this, "Image Deleted Successfully!!", Toast.LENGTH_SHORT).show();    //Temporary
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(EditProfile.this, "Something went wrong!!", Toast.LENGTH_SHORT).show();
             }
         });
     }
