@@ -36,7 +36,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.rishiprojects.attendancemanagement.R;
 import com.rishiprojects.attendancemanagement.admin_files.Homepage;
-import com.rishiprojects.attendancemanagement.admin_files.login.AdminSignup;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
@@ -57,7 +56,7 @@ public class EditProfile extends AppCompatActivity {
 
     private Bitmap bitmap = null;
     String downloadUrl = "";
-    private final int REQ = 1;
+    private final int REQ_GALLERY = 1;
     private final int REQ_CAMERA = 2;
 
     @Override
@@ -77,8 +76,8 @@ public class EditProfile extends AppCompatActivity {
         updateAdminImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (adminImage == null) {
-                    updateProfile();
+                if (adminImage.equals("")) {
+                    updateProfilePic();
                 } else {
                     askForProfileRemoval();
                 }
@@ -100,7 +99,7 @@ public class EditProfile extends AppCompatActivity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
-            Toast.makeText(this, "An error occured", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "An error occurred", Toast.LENGTH_SHORT).show();
             finish();
         }
         assert user != null;
@@ -118,22 +117,22 @@ public class EditProfile extends AppCompatActivity {
         builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                updateProfile();
+                updateProfilePic();
                 dialogInterface.dismiss();
             }
         });
         builder.setNegativeButton("Remove", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                adminImage = null;
+                adminImage = "";    //can't keep it 'null' bcoz the adminImage key from database gets deleted
                 updateAdminImage.setImageDrawable(getResources().getDrawable(R.drawable.blank_profile_pic));
-                bitmap = null;
+
             }
         });
         builder.show();
     }
 
-    private void updateProfile() {
+    private void updateProfilePic() {
         AlertDialog.Builder builder = new AlertDialog.Builder(EditProfile.this);
         builder.setTitle("Update Profile Picture");
         builder.setItems(new CharSequence[]{"Take a Photo", "Choose from Gallery"}, new DialogInterface.OnClickListener() {
@@ -163,13 +162,13 @@ public class EditProfile extends AppCompatActivity {
 
     private void openGallery() {
         Intent pkImg = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(pkImg, REQ);
+        startActivityForResult(pkImg, REQ_GALLERY);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQ && resultCode == RESULT_OK) {
+        if (requestCode == REQ_GALLERY && resultCode == RESULT_OK) {
             //Choose from Gallery
             Uri uri = data.getData();
             try {
